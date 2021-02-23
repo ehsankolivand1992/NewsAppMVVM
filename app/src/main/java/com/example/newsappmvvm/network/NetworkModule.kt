@@ -21,17 +21,14 @@ import javax.inject.Singleton
 interface NewsService {
 
 
-    @Headers("apiKey: " + BuildConfig.API_KEY)
     @GET("top-headlines")
     suspend fun getTopHeadLines(@Query("q") sources: String): NewsModel
 
 
-    @Headers("apiKey: " + BuildConfig.API_KEY)
     @GET("everything")
     suspend fun getEverything(@Query("q") topic: String): NewsModel
 
 
-    @Headers("apiKey: " + BuildConfig.API_KEY)
     @GET("sources")
     suspend fun getSource(): Sources
 
