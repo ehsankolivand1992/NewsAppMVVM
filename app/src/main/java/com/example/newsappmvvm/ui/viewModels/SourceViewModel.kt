@@ -11,36 +11,31 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
-class SourceViewModel @Inject constructor(private val  nr: NewsRepository): ViewModel(){
+class SourceViewModel @Inject constructor(private val nr: NewsRepository) : ViewModel() {
 
 
     lateinit var fragView: FragSource
 
 
-
-    fun setView(fragView: FragSource)
-    {
+    fun setView(fragView: FragSource) {
         this.fragView = fragView
     }
 
 
-
-    fun setRecyclerView()
-    {
+    fun setRecyclerView() {
         viewModelScope.launch {
             withContext(Dispatchers.IO)
             {
-               fragView.setData(nr.getSource())
+                fragView.setData(nr.getSource())
             }
         }
 
     }
 
 
-    class Factory @Inject constructor(val nr: NewsRepository): ViewModelProvider.Factory{
+    class Factory @Inject constructor(val nr: NewsRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(SourceViewModel::class.java))
-            {
+            if (modelClass.isAssignableFrom(SourceViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return SourceViewModel(nr) as T
             }

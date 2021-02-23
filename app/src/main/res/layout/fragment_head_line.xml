@@ -15,14 +15,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:autofillHints="Insert HeadLine"
             android:ems="10"
-            android:text="All"
             android:hint="@string/insert_headline"
             android:inputType="textPersonName"
+            android:text="All"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:autofillHints="Insert HeadLine" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_headline"

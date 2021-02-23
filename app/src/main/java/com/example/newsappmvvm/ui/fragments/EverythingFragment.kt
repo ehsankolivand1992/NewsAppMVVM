@@ -21,9 +21,9 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
-class EverythingFragment : DaggerFragment(),FragView {
+class EverythingFragment : DaggerFragment(), FragView {
     private lateinit var adapter: NewsRecyclerViewAdapter
-    private var _binding:FragmentEverythingBinding?=null
+    private var _binding: FragmentEverythingBinding? = null
     private val binding get() = _binding!!
     private val _textInput = BehaviorSubject.create<String>()
     private val textInput = _textInput.toFlowable(BackpressureStrategy.LATEST)
@@ -34,12 +34,11 @@ class EverythingFragment : DaggerFragment(),FragView {
     lateinit var mainViewModel: EverythingViewModel
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding =FragmentEverythingBinding.inflate(inflater, container, false)
+        _binding = FragmentEverythingBinding.inflate(inflater, container, false)
         mainViewModel.setView(this)
 
         binding.etSearch.doAfterTextChanged {
@@ -53,7 +52,7 @@ class EverythingFragment : DaggerFragment(),FragView {
                 .debounce(1000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe{
+                .subscribe {
                     mainViewModel.setRecyclerView()
                 })
 
@@ -63,7 +62,6 @@ class EverythingFragment : DaggerFragment(),FragView {
         return binding.root
 
     }
-
 
 
     override fun setData(allNews: List<ModelArticle>) {

@@ -8,7 +8,6 @@ import com.example.newsappmvvm.data.models.local.ModelSourceX
 import com.example.newsappmvvm.data.models.local.relations.ArticleAndNews
 import com.example.newsappmvvm.data.models.local.relations.ArticleAndSource
 import com.example.newsappmvvm.data.models.remote.NewsModel
-import com.example.newsappmvvm.data.models.remote.Sources
 import com.example.newsappmvvm.utils.CheckNetworkState
 import javax.inject.Inject
 
@@ -21,29 +20,24 @@ class NewsRepository @Inject constructor(
     private var articleAndNews: NewsModel? = null
 
 
+    suspend fun getAllNews(query: String)
+            : List<ModelArticle> {
 
 
-     suspend fun getAllNews(query:String)
-     : List<ModelArticle> {
+        if (networkState.isOnline()) {
+            articleAndNews = remoteDataSource.getEverything(query)
+            this.deleteAllArticles()
+            localDataSource.insert(networkState.ConvertModelRemoteToLocal(articleAndNews!!))
+
+        }
+
+        return localDataSource.getAllNews()
+
+    }
 
 
-         if (networkState.isOnline())
-         {
-             articleAndNews = remoteDataSource.getEverything(query)
-             this.deleteAllArticles()
-             localDataSource.insert(networkState.ConvertModelRemoteToLocal(articleAndNews!!))
-
-         }
-
-         return localDataSource.getAllNews()
-
-      }
-
-
-    suspend fun getTopHeadLines(topic: String): List<ModelArticle>
-    {
-        if (networkState.isOnline())
-        {
+    suspend fun getTopHeadLines(topic: String): List<ModelArticle> {
+        if (networkState.isOnline()) {
             articleAndNews = remoteDataSource.getTopHeadLines(topic)
             this.deleteAllArticles()
             localDataSource.insert(networkState.ConvertModelRemoteToLocal(articleAndNews!!))
@@ -53,9 +47,8 @@ class NewsRepository @Inject constructor(
     }
 
     suspend fun getSource(): List<ModelSourceX> {
-        if (networkState.isOnline())
-        {
-           val sources = remoteDataSource.getSource()
+        if (networkState.isOnline()) {
+            val sources = remoteDataSource.getSource()
             this.deleteAllSource()
             localDataSource.insert(networkState.ConvertModelRemoteToLocal(sources))
 
@@ -64,18 +57,16 @@ class NewsRepository @Inject constructor(
         return localDataSource.getAllSources()
     }
 
-     fun getAllArticleAndSource(): ArticleAndSource {
+    fun getAllArticleAndSource(): ArticleAndSource {
         return localDataSource.getAllArticleAndSource()
     }
 
-    private fun deleteAllArticles()
-    {
+    private fun deleteAllArticles() {
         localDataSource.deleteAllArticles()
     }
 
-    private fun deleteAllSource()
-    {
-     localDataSource.deleteAllSources()
+    private fun deleteAllSource() {
+        localDataSource.deleteAllSources()
     }
 
 
@@ -90,7 +81,6 @@ class NewsRepository @Inject constructor(
     fun insert(news: ModelNews): Long {
         return localDataSource.insert(news)
     }
-
 
 
 }

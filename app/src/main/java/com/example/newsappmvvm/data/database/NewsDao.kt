@@ -15,20 +15,17 @@ import com.example.newsappmvvm.data.models.local.relations.ArticleAndSource
 interface NewsDao {
 
 
-
-    fun insert(articleAndNews: ArticleAndNews)
-    {
+    fun insert(articleAndNews: ArticleAndNews) {
         val articles = articleAndNews.article
-        val news = this.insert( articleAndNews.news)
-        for (item in articles)
-        {
+        val news = this.insert(articleAndNews.news)
+        for (item in articles) {
             item.newsId = news
         }
         this.insert(articles)
     }
 
-    fun insert(articleAndSource: ArticleAndSource,newsId: Long){
-        val  source = articleAndSource.source
+    fun insert(articleAndSource: ArticleAndSource, newsId: Long) {
+        val source = articleAndSource.source
         val article = articleAndSource.article
 
         article.newsId = newsId
@@ -43,35 +40,35 @@ interface NewsDao {
 
 
     @Insert
-      fun insert(source: ModelSource):Long
+    fun insert(source: ModelSource): Long
 
     @Insert
-      fun insert(article: ModelArticle):Long
+    fun insert(article: ModelArticle): Long
 
 
     @Insert
-      fun insert(article: List<ModelArticle>)
+    fun insert(article: List<ModelArticle>)
 
     @Insert
-      fun insert(news: ModelNews):Long
+    fun insert(news: ModelNews): Long
 
-     @Query("SELECT * FROM NEWS_TABLE")
-      fun getAllNews():ArticleAndNews
+    @Query("SELECT * FROM NEWS_TABLE")
+    fun getAllNews(): ArticleAndNews
 
 
     @Query("SELECT * FROM article_table")
-    fun getAllArticle():List<ModelArticle>
+    fun getAllArticle(): List<ModelArticle>
 
 
     @Query("SELECT * FROM ARTICLE_TABLE")
-      fun getAllArticleAndSource():ArticleAndSource
+    fun getAllArticleAndSource(): ArticleAndSource
 
 
-     @Query("DELETE  FROM ARTICLE_TABLE")
-      fun deleteAllArticles()
+    @Query("DELETE  FROM ARTICLE_TABLE")
+    fun deleteAllArticles()
 
-     @Query("SELECT * FROM source_x_table")
-     fun getAllSources():List<ModelSourceX>
+    @Query("SELECT * FROM source_x_table")
+    fun getAllSources(): List<ModelSourceX>
 
     @Query("DELETE  FROM source_x_table")
     fun deleteAllSources()

@@ -7,24 +7,23 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.http.Headers
 
 
-interface NewsService{
+interface NewsService {
 
 
     @Headers("apiKey: " + BuildConfig.API_KEY)
     @GET("top-headlines")
-     suspend fun getTopHeadLines(@Query("q") sources: String):NewsModel
-
+    suspend fun getTopHeadLines(@Query("q") sources: String): NewsModel
 
 
     @Headers("apiKey: " + BuildConfig.API_KEY)
@@ -32,24 +31,19 @@ interface NewsService{
     suspend fun getEverything(@Query("q") topic: String): NewsModel
 
 
-
     @Headers("apiKey: " + BuildConfig.API_KEY)
     @GET("sources")
-    suspend  fun getSource(): Sources
-
+    suspend fun getSource(): Sources
 
 
 }
 
 
-
-
 @Module
-internal class NetworkModule{
+internal class NetworkModule {
 
     @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor{
-
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
 
 
         val interceptor = HttpLoggingInterceptor()
@@ -58,7 +52,6 @@ internal class NetworkModule{
         return interceptor
 
     }
-
 
 
     @Provides
@@ -88,24 +81,20 @@ internal class NetworkModule{
     }
 
 
-
-
     @Singleton
     @Provides
     fun retrofit(okh: OkHttpClient): Retrofit = Retrofit.Builder()
-            .baseUrl(BuildConfig.News_WebService_URL)
-            .client(okh)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .build()
+        .baseUrl(BuildConfig.News_WebService_URL)
+        .client(okh)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+        .build()
 
 
     @Provides
     @Singleton
     fun newsService(retrofit: Retrofit): NewsService =
         retrofit.create(NewsService::class.java)
-
-
 
 
     companion object {

@@ -5,20 +5,21 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.newsappmvvm.data.models.local.relations.ArticleAndNews
 import com.example.newsappmvvm.databinding.ActivityMainBinding
 import com.example.newsappmvvm.ui.adapters.NewsViewPagerAdapter
-import com.example.newsappmvvm.ui.viewModels.listinnerStructure.MainView
 import com.example.newsappmvvm.ui.viewModels.MainViewModel
+import com.example.newsappmvvm.ui.viewModels.listinnerStructure.MainView
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity(), MainView {
     lateinit var mainBinding: ActivityMainBinding
 
-    lateinit var adapter:NewsViewPagerAdapter
+    lateinit var adapter: NewsViewPagerAdapter
+
     @Inject
     lateinit var mainViewModel: MainViewModel
 
 
-    override  fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         val view = mainBinding.root

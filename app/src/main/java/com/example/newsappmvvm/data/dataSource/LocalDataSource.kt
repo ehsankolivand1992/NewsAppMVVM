@@ -9,19 +9,18 @@ import com.example.newsappmvvm.data.models.local.relations.ArticleAndNews
 import com.example.newsappmvvm.data.models.local.relations.ArticleAndSource
 import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(private val dao: NewsDao): LocalDataSourceStructure {
+class LocalDataSource @Inject constructor(private val dao: NewsDao) : LocalDataSourceStructure {
 
 
+    override fun getAllNews(): List<ModelArticle> {
 
-    override  fun getAllNews(): List<ModelArticle> {
-
-       return dao.getAllArticle()
+        return dao.getAllArticle()
 
     }
 
     override fun getAllArticleAndSource(): ArticleAndSource {
 
-       return dao.getAllArticleAndSource()
+        return dao.getAllArticleAndSource()
 
     }
 
@@ -31,11 +30,8 @@ class LocalDataSource @Inject constructor(private val dao: NewsDao): LocalDataSo
     }
 
 
-
-
-
     override fun insert(articleAndSource: ArticleAndSource, newsId: Long) {
-        dao.insert(articleAndSource,newsId)
+        dao.insert(articleAndSource, newsId)
     }
 
     // ArticleAndNews contain a ModelNews List<ModelArticle> one by many

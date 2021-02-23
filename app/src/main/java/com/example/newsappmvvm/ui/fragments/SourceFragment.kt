@@ -1,7 +1,6 @@
 package com.example.newsappmvvm.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,15 +14,15 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 
-class SourceFragment : DaggerFragment(),FragSource {
+class SourceFragment : DaggerFragment(), FragSource {
 
 
-    private var _binding: FragmentSourceBinding?=null
+    private var _binding: FragmentSourceBinding? = null
 
     private val binding get() = _binding!!
+
     @Inject
     lateinit var mainViewModel: SourceViewModel
-
 
 
     override fun onCreateView(
@@ -43,7 +42,8 @@ class SourceFragment : DaggerFragment(),FragSource {
     override fun setData(allNews: List<ModelSourceX>) {
 
         activity?.runOnUiThread {
-            val sourceAdapter = SourceRecyclerViewAdapter(allNews, requireActivity().applicationContext)
+            val sourceAdapter =
+                SourceRecyclerViewAdapter(allNews, requireActivity().applicationContext)
             binding.rvSources.adapter = sourceAdapter
             binding.rvSources.layoutManager = LinearLayoutManager(activity)
         }

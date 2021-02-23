@@ -15,9 +15,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField  "String", "News_WebService_URL",  "\"https://newsapi.org/v2/\""
+        buildConfigField "String", "News_WebService_URL", "\"https://newsapi.org/v2/\""
 
-        buildConfigField  "String", "API_KEY", "\"a7d6cb88aca74fb09fb79b3899b5cf93\""
+        buildConfigField "String", "API_KEY", "\"a7d6cb88aca74fb09fb79b3899b5cf93\""
 
 
     }
@@ -63,7 +63,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
 
-    def  version_dagger = "2.31.1"
+    def version_dagger = "2.31.1"
     // Dagger
     implementation "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
@@ -72,15 +72,11 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$version_dagger"
 
 
-
-
-
-
     def room_version = "2.2.6"
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
-    implementation  "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
 
 
     // optional - Kotlin Extensions and Coroutines support for Room
@@ -90,7 +86,6 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
 
 
-
     def rxJavaVersion = '2.1.1'
     def rxAndroidVersion = '2.1.1'
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
@@ -98,9 +93,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxAndroidVersion"
 
 
-
-
-    def  gsonVersion = '2.8.6'
+    def gsonVersion = '2.8.6'
     def okhttp = '4.9.0'
     def retrofit = '2.9.0'
 
@@ -111,7 +104,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
     implementation("com.squareup.retrofit2:adapter-rxjava3:$retrofit")
-
 
 
 }

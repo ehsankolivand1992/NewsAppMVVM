@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "source_table")
 data class ModelSource(
-        @PrimaryKey(autoGenerate = true)
-        val id: Long,
-        @ColumnInfo(name = "article_id")
-        var articleId: Long,
-        @ColumnInfo(name="name")
-        val name: String
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    @ColumnInfo(name = "article_id")
+    var articleId: Long,
+    @ColumnInfo(name = "name")
+    val name: String
 )

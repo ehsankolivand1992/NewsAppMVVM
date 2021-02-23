@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "news_table")
 data class ModelNews(
-        @PrimaryKey(autoGenerate = true)
-        val id:Long,
-        @ColumnInfo(name = "status")
-        val status: String,
-        @ColumnInfo(name = "total_results")
-        val totalResults: Int
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    @ColumnInfo(name = "status")
+    val status: String,
+    @ColumnInfo(name = "total_results")
+    val totalResults: Int
 )

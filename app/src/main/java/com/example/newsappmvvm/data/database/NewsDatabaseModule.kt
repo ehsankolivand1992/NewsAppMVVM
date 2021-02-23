@@ -15,14 +15,15 @@ abstract class NewsDatabaseModule {
         @Singleton
         @Provides
         fun provideDb(context: Context) = Room.databaseBuilder(
-            context.applicationContext, NewsDatabase::class.java, "news_db")
+            context.applicationContext, NewsDatabase::class.java, "news_db"
+        )
             .allowMainThreadQueries().build()
 
 
         @Singleton
         @Provides
         fun provideNewsDao(db: NewsDatabase) = db.getNewsDao()
-}
+    }
 
 
 }

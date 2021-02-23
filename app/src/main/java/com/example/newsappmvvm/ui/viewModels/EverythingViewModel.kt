@@ -11,23 +11,19 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
-
-class EverythingViewModel @Inject constructor(private val  nr: NewsRepository): ViewModel(){
+class EverythingViewModel @Inject constructor(private val nr: NewsRepository) : ViewModel() {
 
 
     lateinit var mainView: FragView
 
 
-    fun setView(fragView: FragView)
-    {
+    fun setView(fragView: FragView) {
         this.mainView = fragView
     }
 
 
-
-    fun setRecyclerView()
-    {
-        var test =  mainView.getText()
+    fun setRecyclerView() {
+        var test = mainView.getText()
         viewModelScope.launch {
             withContext(Dispatchers.IO)
             {
@@ -38,12 +34,9 @@ class EverythingViewModel @Inject constructor(private val  nr: NewsRepository): 
     }
 
 
-
-
-    class Factory @Inject constructor(val nr: NewsRepository): ViewModelProvider.Factory{
+    class Factory @Inject constructor(val nr: NewsRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(EverythingViewModel::class.java))
-            {
+            if (modelClass.isAssignableFrom(EverythingViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return EverythingViewModel(nr) as T
             }
@@ -52,7 +45,6 @@ class EverythingViewModel @Inject constructor(private val  nr: NewsRepository): 
         }
 
     }
-
 
 
 }

@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.data.models.local.ModelSourceX
 import com.example.newsappmvvm.databinding.SourcesItemsBinding
 
-class SourceRecyclerViewAdapter constructor(var sourceList: List<ModelSourceX>,val context: Context)
-    : RecyclerView.Adapter<SourceRecyclerViewAdapter.SourceRecyclerViewAdapterViewHolder>() {
-    inner class SourceRecyclerViewAdapterViewHolder(val item: SourcesItemsBinding)
-        : RecyclerView.ViewHolder(item.root)
+class SourceRecyclerViewAdapter constructor(
+    var sourceList: List<ModelSourceX>,
+    val context: Context
+) : RecyclerView.Adapter<SourceRecyclerViewAdapter.SourceRecyclerViewAdapterViewHolder>() {
+    inner class SourceRecyclerViewAdapterViewHolder(val item: SourcesItemsBinding) :
+        RecyclerView.ViewHolder(item.root)
 
     override fun getItemCount(): Int {
         return sourceList.size
@@ -20,7 +22,7 @@ class SourceRecyclerViewAdapter constructor(var sourceList: List<ModelSourceX>,v
 
     override fun onBindViewHolder(holder: SourceRecyclerViewAdapterViewHolder, position: Int) {
 
-        val source  = sourceList[position]
+        val source = sourceList[position]
         with(holder.item)
         {
             txtCategory.text = source.category
@@ -40,7 +42,8 @@ class SourceRecyclerViewAdapter constructor(var sourceList: List<ModelSourceX>,v
         parent: ViewGroup,
         viewType: Int
     ): SourceRecyclerViewAdapterViewHolder {
-        val binding = SourcesItemsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            SourcesItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return SourceRecyclerViewAdapterViewHolder(binding)
     }
