@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">News App MVVM</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="insert_headline">insert Headline</string>
+    <string name="name">name:</string>
+    <string name="country">Country</string>
+    <string name="language">Language</string>
+    <string name="category">Category</string>
+    <string name="open_site">Open Site</string>
+</resources>
